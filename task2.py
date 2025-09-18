@@ -1,11 +1,12 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Collection
 
-from sympy import symbols, Eq, roots, Function, Symbol, degree, solve
+from sympy import symbols, Eq, roots, Function, Symbol, degree, solve, Expr
 
 a = 21
 b = -111
 c = 91
 n = symbols('n')
+
 d = n * 4 ** n
 start_roots = {}
 
@@ -83,8 +84,27 @@ a_private = find_private_solution_lnrs(d, [21, -111, 91], 4)
 print(a_private)
 
 
-def find_general_heterogeneous_solution():
-    pass
+def find_general_heterogeneous_solution(a_general, a_private):
+    global n
+    exp = a_general + a_private
+    row_1 = exp.subs(n, 0)
+    row_2 = exp.subs(n, 1)
+    row_3 = exp.subs(n, 2)
+    eq1 = Eq(1, row_1)
+    eq2 = Eq(2, row_2)
+    eq3 = Eq(3, row_3)
+    print(row_1)
+    print(row_2)
+    print(row_3)
+    solution = solve([eq1, eq2, eq3], coefficients_start)
+    return exp.subs(solution)
+
 
 # exercise 3
-
+general_heterogeneous_solution = find_general_heterogeneous_solution(a_general, a_private)
+print(general_heterogeneous_solution)
+print(general_heterogeneous_solution.subs(n, 0))
+print(general_heterogeneous_solution.subs(n, 1))
+print(general_heterogeneous_solution.subs(n, 2))
+print(general_heterogeneous_solution.subs(n, 3))
+print(general_heterogeneous_solution.subs(n, 4))
