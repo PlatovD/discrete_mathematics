@@ -1,110 +1,85 @@
-from typing import List, Dict, Any, Collection
+from typing import List, Dict, Any
 
-from sympy import symbols, Eq, roots, Function, Symbol, degree, solve, Expr
-
-a = 21
-b = -111
-c = 91
-n = symbols('n')
-
-d = n * 4 ** n
-start_roots = {}
-
-coefficients_start = []
-coefficients = []
+from sympy import symbols, Eq, roots, Symbol, degree, solve, Expr
 
 
-def find_general_solution_lors(factors: List):
-    global coefficients_start
-    # инициализирую все необходимые переменные
-    n = len(factors)
-    q, a, var = symbols('q aₙ n')
-    # составляю первое уравнение и решаю его
-    eq = Eq(q ** n, sum(q ** (n - i - 1) * factors[i] for i in range(n)))
-    # обрабатываю кратные корни
-    start_roots = roots(eq, q)
-    solutions = __handle_frendering(start_roots, var)
-    # генерирую уравнение ЛОРС
-    coefficients_start = symbols(f'c1:{len(solutions) + 1}')
-    return sum(coefficients_start[i] * solutions[i] for i in range(n))
+class RecurrentLinearSolver:
+    __roots: Dict
+    __coefficients_LHRR: List
+    __coefficients_LNRR: List
 
+    def __init__(self, parameters: List, d_n: Expr, initial_conditions: Dict, variable_n: Symbol):
+        self.__parameters = parameters
+        self.__d_n = d_n
+        self.__initial_conditions = initial_conditions
+        self.__n = variable_n
+        self.__coefficients_LHRR = []
+        self.__coefficients_LNRR = []
 
-def __handle_frendering(solutions: Dict, var: Symbol) -> List:
-    solutions_new = []
-    for key, val in solutions.items():
-        solutions_new.append(key ** var)
-        if val > 1:
-            n = 1
-            while val > 1:
-                solutions_new.append(key ** var * var ** n)
-                val -= 1
-    return solutions_new
+    def find_general_solution_lhrr(self):
+        # инициализирую все необходимые переменные
+        n = len(self.__parameters)
+        # составляю первое уравнение и решаю его
+        self.__find__roots()
+        # обрабатываю кратные корни
+        solutions = self.__handle_frendering()
+        # генерирую уравнение ЛОРС
+        self.__coefficients_LHRR = symbols(f'c1:{len(solutions) + 1}')
+        return sum(self.__coefficients_LHRR[i] * solutions[i] for i in range(n))
 
+    def __find__roots(self):
+        n = len(self.__parameters)
+        q = symbols('q')
+        eq = Eq(q ** n, sum(q ** (n - i - 1) * self.__parameters[i] for i in range(n)))
+        self.__roots = roots(eq, q)
 
-# exercise 1
-a_general = find_general_solution_lors([21, -111, 91])
-print(a_general)
+    def __handle_frendering(self) -> List:
+        solutions_new = []
+        for key, val in self.__roots.items():
+            solutions_new.append(key ** self.__n)
+            if val > 1:
+                n = 1
+                while val > 1:
+                    solutions_new.append(key ** self.__n * self.__n ** n)
+                    val -= 1
+        return solutions_new
 
+    def find_private_solution_lnrr(self, t):
+        funcs = []
+        n = len(self.__parameters)
+        for i in range(n + 1):
+            new_func = self.__get_equal_function()
+            new_func *= t ** self.__n
+            if t in self.__roots:
+                new_func *= self.__n ** self.__roots[t]
+            new_func = new_func.subs(self.__n, self.__n + i)
+            funcs.append(new_func)
 
-def find_private_solution_lnrs(func, factors, t):
-    global n
-    funcs = []
-    for i in range(len(factors) + 1):
-        new_func = __get_equal_function(func, i)
-        new_func *= t ** (n + i)
-        if t in start_roots:
-            new_func *= (n + i) ** start_roots[t]
-        funcs.append(new_func)
+        eq = Eq(funcs[n], sum(self.__parameters[n - i - 1] * funcs[i] for i in range(n)) + self.__d_n)
+        solutions = solve(eq, self.__coefficients_LNRR)
+        res = self.__get_equal_function(eternal=solutions)
+        res *= t ** self.__n
+        if t in self.__roots:
+            res *= self.__n ** self.__roots[t]
+        return res
 
-    eq = Eq(funcs[len(factors)], sum(factors[len(factors) - i - 1] * funcs[i] for i in range(len(factors))) + func)
-    solutions = solve(eq, coefficients)
-    res = __get_equal_function(func, eternal=solutions)
-    res *= t ** n
-    if t in start_roots:
-        res *= n ** start_roots[t]
-    return res
+    def __get_equal_function(self, eternal: Dict | Any = None):
+        power = degree(self.__d_n)
+        if len(self.__coefficients_LNRR) == 0:
+            self.__coefficients_LNRR = symbols(f'c0:{power + 1}')
+        if eternal:
+            coeffs = [val for val in eternal.values()]
+            new_func = (sum(coeffs[i] * self.__n ** i for i in range(power + 1)))
+        else:
+            new_func = (sum(self.__coefficients_LNRR[i] * self.__n ** i for i in range(power + 1)))
+        return new_func
 
-
-def __get_equal_function(func, additional: int = 0, eternal: Dict | Any = None):
-    global coefficients
-
-    power = degree(func)
-    if len(coefficients) == 0:
-        coefficients = symbols(f'c0:{power + 1}')
-    if eternal:
-        coefs = [val for val in eternal.values()]
-        new_func = (sum(coefs[i] * (n + additional) ** i for i in range(power + 1)))
-    else:
-        new_func = (sum(coefficients[i] * (n + additional) ** i for i in range(power + 1)))
-    return new_func
-
-
-# exercise 2
-a_private = find_private_solution_lnrs(d, [21, -111, 91], 4)
-print(a_private)
-
-
-def find_general_heterogeneous_solution(a_general, a_private):
-    global n
-    exp = a_general + a_private
-    row_1 = exp.subs(n, 0)
-    row_2 = exp.subs(n, 1)
-    row_3 = exp.subs(n, 2)
-    eq1 = Eq(1, row_1)
-    eq2 = Eq(2, row_2)
-    eq3 = Eq(3, row_3)
-    print(row_1)
-    print(row_2)
-    print(row_3)
-    solution = solve([eq1, eq2, eq3], coefficients_start)
-    return exp.subs(solution)
-
-
-# exercise 3
-general_heterogeneous_solution = find_general_heterogeneous_solution(a_general, a_private)
-print(general_heterogeneous_solution)
-print(general_heterogeneous_solution.subs(n, 0))
-print(general_heterogeneous_solution.subs(n, 1))
-print(general_heterogeneous_solution.subs(n, 2))
-print(general_heterogeneous_solution.subs(n, 3))
-print(general_heterogeneous_solution.subs(n, 4))
+    def find_general_heterogeneous_solution(self, t):
+        exp = self.find_general_solution_lhrr() + self.find_private_solution_lnrr(t)
+        eq_system = []
+        for n, res in self.__initial_conditions.items():
+            row_exp = exp.subs(self.__n, n)
+            eq = Eq(res, row_exp)
+            eq_system.append(eq)
+        solution = solve(eq_system, self.__coefficients_LHRR)
+        return exp.subs(solution)
