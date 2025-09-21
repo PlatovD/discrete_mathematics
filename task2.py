@@ -83,3 +83,23 @@ class RecurrentLinearSolver:
             eq_system.append(eq)
         solution = solve(eq_system, self.__coefficients_LHRR)
         return exp.subs(solution)
+
+    def get_n_element_by_recurrent(self, n: int):
+        if n < 0:
+            raise RuntimeError('N should not be negative')
+        if n in self.__initial_conditions.keys():
+            return self.__initial_conditions.get(n)
+        if len(self.__parameters) > len(self.__initial_conditions):
+            raise RuntimeError('Initial conditions is too small to find next element')
+        return self.__get_n_element_by_recurrent(n, len(self.__parameters))
+
+    def __get_n_element_by_recurrent(self, n: int, depth: int):
+        if all(_ in self.__initial_conditions.keys() for _ in range(n - 1, n - depth - 1, -1)):
+            res = sum(self.__parameters[i - 1] * self.get_n_element_by_recurrent(n - i) for i in
+                      range(1, depth + 1)) + self.__d_n.subs(self.__n, n - depth)
+            self.__initial_conditions[n] = res
+            return res
+
+    def get_n_element_by_general_member_formula(self, n: int, t: int):
+        formula = self.find_general_heterogeneous_solution(t)
+        return formula.subs(self.__n, n)
