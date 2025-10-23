@@ -64,11 +64,14 @@ class RecurrentLinearSolver:
         return res
 
     def __get_equal_function(self, eternal: Dict | Any = None):
-        power = degree(self.__d_n)
+        power = self.__d_n.as_coeff_exponent(self.__n)[1]
         if len(self.__coefficients_LNRR) == 0:
             self.__coefficients_LNRR = symbols(f'c0:{power + 1}')
         if eternal:
-            coeffs = [val for val in eternal.values()]
+            if eternal is Dict:
+                coeffs = [val for val in eternal.values()]
+            else:
+                coeffs = eternal
             new_func = (sum(coeffs[i] * self.__n ** i for i in range(power + 1)))
         else:
             new_func = (sum(self.__coefficients_LNRR[i] * self.__n ** i for i in range(power + 1)))
