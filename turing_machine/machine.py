@@ -18,13 +18,16 @@ class TuringMachine:
     def init_from_config(cls, config: Configuration):
         return cls(config.alphabet, config.command, config.line, config.start_cell_index)
 
+    def get_current_configuration(self):
+        return Configuration(self.alphabet, self.tape.get_line(), self.command, self.tape.get_print_head_index())
+
     def execute(self) -> Configuration:
         while self.__step():
             self.count_actions += 1
             if self.count_actions > 1_000_000:
                 raise MachineIsNotApplicableError("Машина не применима к данному слову при данной программе")
-            continue
-        return Configuration(self.alphabet, self.tape.get_line(), self.command, self.tape.get_print_head_index())
+
+        return self.get_current_configuration()
 
     def __step(self) -> bool:
         if self.command.is_final_state: return False
@@ -37,6 +40,3 @@ class TuringMachine:
         self.command = transition_state.command
         self.tape.move(transition_state.direction)
         return True
-
-    def __process_command(self):
-        pass

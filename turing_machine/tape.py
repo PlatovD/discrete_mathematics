@@ -46,3 +46,6 @@ class Tape:
 
     def get_line(self):
         return ''.join(self.line)
+
+    def __str__(self):
+        return str(self.line)

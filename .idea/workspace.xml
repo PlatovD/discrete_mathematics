@@ -5,32 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3432a8c0-6d89-40d0-bf8a-c3a29654533d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/configurations/1.3.1a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configurations/1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configurations/11.4a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/unit/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/unit/test_reader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/unit/test_tape.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/unit/testutil/test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/command/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/command/command.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/error/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/error/reader_error.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/error/tape_error.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/error/turing_machine_error.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/machine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/reader/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/reader/reader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/tape.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/util/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/util/configuration.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turing_machine/util/direction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configurations/2.1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configurations/3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configurations/util(f(x)=3x)" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2.py" beforeDir="false" afterPath="$PROJECT_DIR$/task2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/1.3.1a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/11.4a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task1.py" beforeDir="false" afterPath="$PROJECT_DIR$/task1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/unit/testutil/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit/testutil/test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turing_machine/machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/turing_machine/machine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turing_machine/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/turing_machine/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turing_machine/tape.py" beforeDir="false" afterPath="$PROJECT_DIR$/turing_machine/tape.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turing_machine/util/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/turing_machine/util/configuration.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +51,7 @@
     "Python tests.Python tests for unit.test_tape.TestTapeModel.test_get_print_head_index.executor": "Run",
     "Python tests.Python tests for unit.test_tape.TestTapeModel.test_long_move.executor": "Run",
     "Python tests.Python tests for unit.test_tape.TestTapeModel.test_move_print_head_left.executor": "Run",
+    "Python.1.executor": "Run",
     "Python.DM2.executor": "Run",
     "Python.main.executor": "Run",
     "Python.task1.executor": "Run",
@@ -71,12 +60,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/dima/programming/python/discrete_mathematics",
+    "last_opened_file_path": "/home/dima/programming/python/discrete_mathematics/configurations",
     "settings.editor.selected.configurable": "trusted.hosts"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/configurations" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -87,6 +77,28 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="discrete_mathematics" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="discrete_mathematics" />
       <option name="ENV_FILES" value="" />
@@ -124,21 +136,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for unit.test_tape.TestTapeModel" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="discrete_mathematics" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;unit.test_tape.TestTapeModel&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Python tests for unit.test_tape.TestTapeModel.test_get_line" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="discrete_mathematics" />
       <option name="ENV_FILES" value="" />
@@ -172,10 +169,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.1" />
         <item itemvalue="Python tests.Python tests for unit.test_tape.TestTapeModel.test_get_line" />
         <item itemvalue="Python tests.Python tests for unit.test_tape.TestTapeModel.test_get_print_head_index" />
         <item itemvalue="Python tests.Python tests for unit.test_reader.TestReader" />
-        <item itemvalue="Python tests.Python tests for unit.test_tape.TestTapeModel" />
       </list>
     </recent_temporary>
   </component>
@@ -196,5 +193,8 @@
       <updated>1756971265972</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.1" />
   </component>
 </project>

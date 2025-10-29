@@ -1,0 +1,27 @@
+// f(x) = 3x - 4
+А
+01
+П
+q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 q13 q14 q0
+q1 1 q2 0 R
+q2 1 q2 1 R
+q2 0 q3 0 R
+q3 1 q3 1 R
+q3 0 q4 1 R
+q4 0 q5 1 R
+q5 0 q6 1 L
+q6 1 q6 1 L
+q6 0 q7 0 L
+q7 1 q8 1 L
+q7 0 q9 0 S
+q8 0 q1 0 R
+q8 1 q8 1 L
+q9 0 q9 0 R
+q9 1 q10 0 R
+q10 1 q11 0 R
+q11 1 q12 0 R
+q12 1 q13 0 R
+q13 1 q14 0 R
+q14 1 q0 0 R
+Р
+0 q1 11111

@@ -4,7 +4,7 @@ from task2 import RecurrentLinearSolver
 
 # n = symbols('n')
 # t = 4
-# rls = RecurrentLinearSolver([21, -111, 91], n * 4 ** n, {0: 1, 1: 2, 2: 3}, n)
+# rls = RecurrentLinearSolver([21, -111, 91], n * 4 ** n, {0: 1, 1: 2.1, 2.1: 3}, n)
 # print(pretty(rls.find_general_solution_lhrr()))
 # print()
 # print(pretty(rls.find_private_solution_lnrr(t)))
