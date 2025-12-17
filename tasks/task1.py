@@ -40,7 +40,6 @@ def build_dual(func: callable) -> callable:
 
     return wrapper
 
-
 # exercise 1.2.1
 def build_true_table(func: callable, table: List, parameters_cnt: int) -> None:
     table.clear()

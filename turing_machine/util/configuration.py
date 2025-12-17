@@ -18,3 +18,5 @@ class Configuration:
     def __str__(self):
         return ''.join(self.line[self.line.index('1'):self.start_cell_index]) + '[' + str(self.command) + ']' + ''.join(
             self.line[self.start_cell_index:]) + self.__to_numeric()
+    # def __str__(self):
+    #     return self.line
